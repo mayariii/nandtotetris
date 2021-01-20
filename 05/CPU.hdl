@@ -52,13 +52,13 @@ CHIP CPU {
     // if MSB is 0, still save to the A regsiter
     Or(a=AInstruction, b=instructionloadA, out=ARegisterLoad);
 
-    Register(in=ARegisterIn, load=ARegisterLoad, out=ARegisterOut, out[0..14]=addressM);
+    ARegister(in=ARegisterIn, load=ARegisterLoad, out=ARegisterOut, out[0..14]=addressM);
 
     //**D Register**
     // If MSB is 1, and (d2(instruction[4]) = true, then load D Register)
     And(a=instruction[15], b=instruction[4], out=DRegisterLoad);
 
-    Register(in=ALUout, load=DRegisterLoad, out=DRegisterOut);
+    DRegister(in=ALUout, load=DRegisterLoad, out=DRegisterOut);
     //D Register output feeds into ALU x input
 
     // if MSB (instruction[15]) is false (0) pass through ALU output
